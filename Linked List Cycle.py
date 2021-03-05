@@ -35,3 +35,27 @@ pos is -1 or a valid index in the linked-list.
 
 Follow up: Can you solve it using O(1) (i.e. constant) memory?"""
 
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        main_ptr = head
+        fast_ptr = head
+
+        while fast_ptr:
+            if fast_ptr.next is not None and fast_ptr.next.next is not None:
+                fast_ptr = fast_ptr.next.next
+                main_ptr = main_ptr.next
+            else:
+                return False
+
+            if fast_ptr == main_ptr:
+                return True
+
+        return False
+
