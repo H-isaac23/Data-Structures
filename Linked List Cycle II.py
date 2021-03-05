@@ -54,3 +54,26 @@ class Solution:
             main_ptr = main_ptr.next
 
         return None
+
+class Solution2:
+    def detectCycle(self, head: ListNode) -> ListNode:
+        main = head
+        fast = head
+
+        while fast:
+            if fast.next is not None and fast.next.next is not None:
+                fast = fast.next.next
+                main = main.next
+            else:
+                return None
+
+            if fast == main:
+                fast = head
+                break
+
+        while fast:
+            if fast != main:
+                fast = fast.next
+                main = main.next
+            else:
+                return main
