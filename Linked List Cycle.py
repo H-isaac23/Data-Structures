@@ -57,5 +57,3 @@ class Solution:
             if fast_ptr == main_ptr:
                 return True
 
-        return False
-
