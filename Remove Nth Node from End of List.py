@@ -25,3 +25,37 @@ The number of nodes in the list is sz.
 1 <= sz <= 30
 0 <= Node.val <= 100
 1 <= n <= sz"""
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        temp = head
+        length = 0
+        while temp:
+            length += 1
+            temp = temp.next
+
+        temp = head
+        node_index = length - n
+        curr_i = 0
+
+        if node_index == 0:
+            head = temp.next
+        else:
+            while True:
+                if curr_i == node_index - 1:
+                    next_node = temp.next.next
+                    temp.next = next_node
+                    break
+                temp = temp.next
+                curr_i += 1
+
+        return head
+    #THIS BEATS 98% OF THE PYTHON3 SUBMISSIONS IN TERMS OF RUNTIME HECK YEAHHHHHHHHHHHHHHHHHHHHHHHH
+    #It's super consuming of memory though lmao
