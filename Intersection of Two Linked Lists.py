@@ -45,3 +45,46 @@ intersectVal == listA[skipA + 1] == listB[skipB + 1] if listA and listB intersec
 
 
 Follow up: Could you write a solution that runs in O(n) time and use only O(1) memory?"""
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        a = headA
+        b = headB
+        la = 0
+        lb = 0
+        diff = None
+        while a:
+            la += 1
+            a = a.next
+        while b:
+            lb += 1
+            b = b.next
+
+        a = headA
+        b = headB
+
+        if la > lb:
+            diff = la - lb
+            for i in range(diff):
+                a = a.next
+        else:
+            diff = lb - la
+            for i in range(diff):
+                b = b.next
+
+        while b != a and a is not None:
+            a = a.next
+            b = b.next
+
+        return a
+
+
+
+
