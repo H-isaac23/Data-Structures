@@ -59,3 +59,34 @@ class Solution:
         return head
     #THIS BEATS 98% OF THE PYTHON3 SUBMISSIONS IN TERMS OF RUNTIME HECK YEAHHHHHHHHHHHHHHHHHHHHHHHH
     #It's super consuming of memory though lmao
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution2:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        dummy = ListNode(0)
+        dummy.next = head
+        main = dummy
+        fast = dummy
+
+        if main.next.next is None:
+            head = None
+            return head
+
+        i = 0
+        while i < n:
+            fast = fast.next
+            i += 1
+            print(fast.val)
+
+        while fast.next is not None:
+            fast = fast.next
+            main = main.next
+        else:
+            main.next = main.next.next
+
+        return dummy.next
