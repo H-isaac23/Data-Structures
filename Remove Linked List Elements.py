@@ -23,3 +23,24 @@ The number of nodes in the list is in the range [0, 104].
 1 <= Node.val <= 50
 0 <= k <= 50"""
 
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+class Solution:
+    def removeElements(self, head: ListNode, val: int) -> ListNode:
+        dummy = ListNode()
+        dummy.next = head
+        main = dummy
+        while main.next:
+            if val == main.next.val:
+                main.next = main.next.next
+            else:
+                main = main.next
+            if main.next is None:
+                break
+
+        return dummy.next
