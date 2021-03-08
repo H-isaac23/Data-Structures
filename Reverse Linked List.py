@@ -53,4 +53,20 @@ class Solution:
                 break
         return head
 
+
+class Solution2:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head is None or head.next is None:
+            return head
+
+        temp = head
+        while temp.next is not None:
+            next_node = temp.next.next
+            temp.next.next = head
+            head = temp.next
+            temp.next = next_node
+
+        return head
+
 # The solution's runtime beats 96.68% of python3 submissions(28ms)
+# The solution2's runtime beats 69.43% of python3 submissions(36ms)
