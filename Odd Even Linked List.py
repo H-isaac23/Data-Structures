@@ -64,3 +64,7 @@ class Solution:
         odd.next = even_head
 
         return head
+
+# Submission Details:
+# Runtime: Faster than 95.66% python3 submissions
+# Memory: Better than 87.46% python3 submissions
