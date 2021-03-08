@@ -17,3 +17,50 @@ Constraints:
 The relative order inside both the even and odd groups should remain as it was in the input.
 The first node is considered odd, the second node even and so on ...
 The length of the linked list is between [0, 10^4]."""
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+class Solution:
+    def oddEvenList(self, head: ListNode) -> ListNode:
+        se = ListNode()
+        se.next = head
+        odd = None
+        even = None
+        even_head = None
+
+        if se.next is not None:
+            odd = se.next
+        else:
+            return head
+
+        if se.next.next is not None:
+            even = se.next.next
+            even_head = se.next.next
+        else:
+            return head
+
+        while odd and odd.next and even and even.next:
+            temp_even = None
+            if odd.next.next is None:
+                temp_even = odd.next
+                odd.next = None
+                even.next = temp_even
+                break
+            else:
+                temp_even = odd.next
+                odd.next = odd.next.next
+                odd = odd.next
+                even.next = temp_even
+                even = even.next
+        else:
+            odd.next = None
+            even.next = None
+
+        odd.next = even_head
+
+        return head
