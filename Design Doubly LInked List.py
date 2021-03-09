@@ -35,3 +35,107 @@ Constraints:
 0 <= index, val <= 1000
 Please do not use the built-in LinkedList library.
 At most 2000 calls will be made to get, addAtHead, addAtTail, addAtIndex and deleteAtIndex."""
+
+class DNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+        self.prev = None
+
+
+class MyLinkedList:
+    def __init__(self):
+        self.tail = None
+        self.head = None
+        self.size = 0
+
+    def get(self, index: int) -> int:
+        temp = self.head
+
+        if index < 0 or index >= self.size:
+            return -1
+
+        for i in range(index):
+            temp = temp.next
+
+        return temp.val
+
+    def addAtHead(self, val: int) -> None:
+        new_node = DNode(val)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+
+        new_node.prev = None
+        self.size += 1
+
+    def addAtTail(self, val: int) -> None:
+        new_node = DNode(val)
+        temp = self.head
+
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+
+        self.size += 1
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        if index > self.size:
+            return
+
+        if index <= 0:
+            self.addAtHead(val)
+        elif index == self.size:
+            self.addAtTail(val)
+        else:
+            new_node = DNode(val)
+            temp = self.head
+            for i in range(index - 1):
+                temp = temp.next
+            next_node = temp.next
+            new_node.prev = temp
+            new_node.next = next_node
+            temp.next = new_node
+            next_node.prev = new_node
+
+            self.size += 1
+
+    def deleteAtIndex(self, index: int) -> None:
+        temp = self.head
+        if self.head is None or index >= self.size or index < 0:
+            return
+
+        for _ in range(index):
+            temp = temp.next
+        if self.size == 1:
+            self.head = None
+            self.tail = None
+        elif temp is self.head:
+            self.head = temp.next
+            self.head.prev = None
+        elif temp is self.tail:
+            self.tail = temp.prev
+            self.tail.next = None
+        else:
+            next_node = temp.next
+            prev_node = temp.prev
+            prev_node.next = next_node
+            next_node.prev = prev_node
+
+        self.size -= 1
+
+# Your MyLinkedList object will be instantiated and called as such:
+# obj = MyLinkedList()
+# param_1 = obj.get(index)
+# obj.addAtHead(val)
+# obj.addAtTail(val)
+# obj.addAtIndex(index,val)
+# obj.deleteAtIndex(index)
