@@ -27,7 +27,7 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-        
+
 class Solution:
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
 
@@ -95,3 +95,6 @@ class Solution:
 
         return head
 
+# Submission Details:
+# Runtime: 80ms, faster than 19.51% of python3 submissions
+# Memory: 14.4mb, better than 45.04% of python3 submissions
