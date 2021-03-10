@@ -20,3 +20,78 @@ Constraints:
 The number of nodes in each linked list is in the range [1, 100].
 0 <= Node.val <= 9
 It is guaranteed that the list represents a number that does not have leading zeros."""
+
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+        
+class Solution:
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+
+        carry = 0
+        head = l1
+        prev = None
+        while l1 and l2:
+            new_val = l1.val + l2.val + carry
+            if new_val > 9:
+                new_val -= 10
+                carry = 1
+            else:
+                carry = 0
+
+            l1.val = new_val
+
+            if l1.next is None and l2.next is None:
+                if carry == 1:
+                    l1.next = ListNode(1)
+                return head
+            elif l1.next is None:
+                l2 = l2.next
+                prev = l1
+                l1 = l1.next
+                print(l1, prev)
+                break
+            elif l2.next is None:
+                l1 = l1.next
+                l2 = l2.next
+                break
+
+            l1 = l1.next
+            l2 = l2.next
+
+        if l1 is not None:
+            while l1:
+                new_val = l1.val + carry
+                if new_val > 9:
+                    new_val -= 10
+                    carry = 1
+                else:
+                    carry = 0
+                l1.val = new_val
+                if l1.next is None and carry == 1:
+                    l1.next = ListNode(1)
+                    break
+                l1 = l1.next
+
+        if l2 is not None:
+            while l2:
+                new_val = l2.val + carry
+                if new_val > 9:
+                    new_val -= 10
+                    carry = 1
+                else:
+                    carry = 0
+
+                l2.val = new_val
+                prev.next = l2
+                prev = prev.next
+                if l2.next is None and carry == 1:
+                    prev.next = ListNode(1)
+                    break
+                l2 = l2.next
+
+        return head
+
