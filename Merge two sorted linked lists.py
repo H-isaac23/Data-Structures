@@ -62,4 +62,7 @@ class Solution:
                 dummy.next = l1
 
         return head.next
-    
+
+# Submission Details
+# Runtime: 36ms, faster then 76.54% of python3 submissions
+# Memory: 14mb, better then 96.50% of python3 submissions
