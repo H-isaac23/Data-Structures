@@ -56,3 +56,39 @@ Constraints:
 
 The number of Nodes will not exceed 1000.
 1 <= Node.val <= 105"""
+
+
+# Definition for a Node.
+class Node:
+    def __init__(self, val, prev, next, child):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
+
+
+class Solution:
+    def flatten(self, head: 'Node') -> 'Node':
+        nodes = []
+        temp = head
+        while temp:
+            if temp.child is not None:
+                if temp.next != None:
+                    nodes.append(temp.next)
+                temp.child.prev = temp
+                temp.next = temp.child
+                temp = temp.child
+                temp.prev.child = None
+            elif temp.child is None:
+                if temp.next is None and nodes == []:
+                    break
+                elif temp.next is None and nodes != []:
+                    temp.next = nodes.pop()
+                    temp.next.prev = temp
+                    temp = temp.next
+                elif temp.next is not None:
+                    temp.next.prev = temp
+                    temp = temp.next
+
+        return head
+    
