@@ -23,3 +23,16 @@ Constraints:
 1 <= nums.length <= 500
 1 <= nums[i] <= 10^5"""
 
+
+class Solution:
+    def findNumbers(self, nums: List[int]) -> int:
+        count = 0
+        for x in nums:
+            if len(str(x)) % 2 == 0:
+                count += 1
+
+        return count
+
+# Submission Details
+# Runtime: 52ms, faster than 76.05% of python3 submissions
+# Memory: 14.2mb, better than 73.69% of python3 submissions
