@@ -42,3 +42,42 @@ Constraints:
 0 <= n <= 1000
 -10000 <= Node.val <= 10000
 Node.random is null or is pointing to some node in the linked list."""
+
+
+# Definition for a Node.
+
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if head is None:
+            return head
+        new_head = Node(0)
+        new = new_head
+        main = head
+        nodes = []
+        new_nodes = []
+
+        while main:
+            nodes.append(main)
+            new.next = Node(main.val)
+            new = new.next
+            new_nodes.append(new)
+            main = main.next
+
+        main = head
+        new = new_head.next
+        while main:
+            if main.random is None:
+                new.random = None
+            elif main.random is not None:
+                i = nodes.index(main.random)
+                new.random = new_nodes[i]
+            new = new.next
+            main = main.next
+
+        return new_head.next
