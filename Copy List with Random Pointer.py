@@ -81,3 +81,7 @@ class Solution:
             main = main.next
 
         return new_head.next
+
+# Submission Details
+# Runtime: 36ms, faster than 64,86% of python3 submissions
+# Memory: 14.9mb, better than 66.39% of python3 submissions.
