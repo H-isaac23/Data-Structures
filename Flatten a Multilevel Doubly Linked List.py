@@ -91,4 +91,7 @@ class Solution:
                     temp = temp.next
 
         return head
-    
+
+# Submission Details
+# Runtime: 60ms, better than 8.09% of python3 submissions
+# Memory: 14.8mb, better than 68.43% of python3 submissions
