@@ -18,3 +18,22 @@ nums2.length == n
 1 <= m + n <= 200
 -109 <= nums1[i], nums2[i] <= 109"""
 
+
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        i = 0
+        j = 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] == 0:
+                nums1[i] = nums2[j]
+                j += 1
+            i += 1
+
+        nums1.sort()
+
+# Submission Details
+# Runtime: 36ms, >76.03%
+# Memory: 14.mb, >35.63%
