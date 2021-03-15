@@ -35,3 +35,26 @@ Constraints:
 0 <= nums.length <= 100
 0 <= nums[i] <= 50
 0 <= val <= 100"""
+
+
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+        length = 0
+        for x in nums:
+            if x == val:
+                length += 1
+        i = 0
+        count = 0
+        while i < len(nums) - 1 and count < length:
+            if nums[i] == val and i != len(nums) - 1:
+                count += 1
+                for j in range(i, len(nums) - 1):
+                    nums[j] = nums[j + 1]
+            else:
+                i += 1
+
+        return len(nums) - length
+
+# Submission Detail
+# Runtime: 28ms, >92.85%
+# Memory: 14.4mb
