@@ -16,3 +16,24 @@ Note:
 1 <= arr.length <= 10000
 0 <= arr[i] <= 9"""
 
+
+class Solution:
+    def duplicateZeros(self, arr: List[int]) -> None:
+        """
+        Do not return anything, modify arr in-place instead.
+        """
+        i = 0
+        while i < len(arr):
+            if arr[i] == 0:
+                for j in range(len(arr) - 2, i, -1):
+                    arr[j + 1] = arr[j]
+                if i + 1 < len(arr):
+                    arr[i + 1] = 0
+                    i += 2
+                else:
+                    break
+            else:
+                i += 1
+
+# Runtime: 1198ms, >7.62%
+# Memory: 50mb, >36.88%
