@@ -37,4 +37,20 @@ class Solution:
                 i += 1
 
         return len(nums) - count
-    
+
+
+class Solution2:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i = 0
+        count = 0
+        orig = len(nums)
+        while i < len(nums) - 1:
+            if i == len(nums) - 1:
+                break
+            elif nums[i] == nums[i + 1]:
+                nums.pop(i + 1)
+                count += 1
+            else:
+                i += 1
+
+        return orig - count
